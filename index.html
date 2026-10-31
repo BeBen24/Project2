@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f5f5">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="ספריית פרקים של סליחה על השאלה – ילדים">
+  <title>סליחה על השאלה — ילדים</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="data.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <svg class="svg-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4"/><path d="m15.6 15.6 4.2 4.2"/></symbol>
+    <symbol id="ic-chevron" viewBox="0 0 24 24"><path d="m6.5 9 5.5 5.5L17.5 9"/></symbol>
+    <symbol id="ic-arrow" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></symbol>
+    <symbol id="ic-play" viewBox="0 0 24 24"><path d="m9 5 10 7-10 7V5Z"/></symbol>
+    <symbol id="ic-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+    <symbol id="ic-back" viewBox="0 0 24 24"><path d="m14.8 5.5-6.5 6.5 6.5 6.5"/></symbol>
+    <symbol id="ic-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.4 1.4M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7L13 18"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+  </svg>
+  <main class="app" id="app">
+    <header class="masthead">
+      <div class="brand" aria-label="סליחה על השאלה ילדים">
+        <span class="brand-title">סליחה על השאלה</span>
+        <span class="brand-edition">ילדים</span>
+      </div>
+      <a class="external" href="https://www.kan.org.il/kids/content/kids/hinuchit-main/p-11681/" target="_blank" rel="noopener noreferrer">כאן חינוכית <svg class="icon"><use href="#ic-arrow"/></svg></a>
+    </header>
+    <div class="workspace">
+      <aside class="catalog" aria-label="ספריית הפרקים">
+        <div class="catalog-controls">
+          <div class="top-controls">
+            <div class="select-shell" id="seasonShell">
+              <button type="button" id="seasonTrigger" class="liquid-control select-trigger" aria-haspopup="listbox" aria-controls="seasonOptions" aria-expanded="false">
+                <span id="seasonLabel">כל העונות</span><svg class="icon arrow-down"><use href="#ic-chevron"/></svg>
+              </button>
+              <div id="seasonOptions" role="listbox" tabindex="-1" class="options-panel" aria-label="בחירת עונה" hidden>
+                <button type="button" role="option" data-season="0" aria-selected="true">כל העונות</button>
+                <button type="button" role="option" data-season="4" aria-selected="false">עונה 4</button>
+                <button type="button" role="option" data-season="3" aria-selected="false">עונה 3</button>
+                <button type="button" role="option" data-season="2" aria-selected="false">עונה 2</button>
+              </div>
+            </div>
+            <label class="search-field liquid-control" for="searchInput">
+              <svg class="icon"><use href="#ic-search"/></svg>
+              <input type="search" id="searchInput" placeholder="חיפוש" autocomplete="off" spellcheck="false">
+            </label>
+          </div>
+          <div class="grade-filter" id="gradeControl">
+            <div class="grade-row">
+              <label for="gradeSlider">כיתה</label>
+              <output id="gradeOutput" for="gradeSlider">כל הכיתות</output>
+            </div>
+            <input type="range" id="gradeSlider" min="0" max="12" step="1" value="0" aria-label="כיתה מומלצת, אפס מציג את כל הכיתות" style="--progress:0%">
+          </div>
+        </div>
+        <div class="episode-scroll" id="episodeScroll" tabindex="0" aria-label="רשימת הפרקים">
+          <div class="episode-list" id="episodeList"></div>
+        </div>
+        <p class="catalog-credit">עונה 1 הוסרה מהספרייה עקב חוסר זמינות לצפייה</p>
+      </aside>
+      <section class="viewer" id="viewer" aria-label="פרטי הפרק">
+        <button type="button" class="mobile-back" id="mobileBack"><svg class="icon"><use href="#ic-back"/></svg><span>פרקים</span></button>
+        <div class="viewer-inside">
+          <div class="screen" id="screen" aria-label="נגן הפרק"></div>
+          <div class="episode-detail">
+            <div class="detail-heading">
+              <div>
+                <p class="season-context" id="seasonContext"></p>
+                <h1 id="detailTitle"></h1>
+              </div>
+            </div>
+            <p class="episode-description" id="detailDescription"></p>
+            <div class="verified-questions" id="detailQuestions" hidden>
+              <h2>שאלות שעולות בפרק</h2>
+              <p id="questionsText"></p>
+            </div>
+            <div class="episode-meta" id="episodeMeta"></div>
+            <div class="viewer-actions" id="viewerActions"></div>
+            <form class="link-editor" id="linkEditor" hidden>
+              <label for="linkInput">קישור YouTube חלופי</label>
+              <div class="editor-row"><input type="url" id="linkInput" placeholder="https://youtube.com/watch?v=..." dir="ltr" autocomplete="off"><button type="submit">שמירה</button><button type="button" id="cancelLink">ביטול</button></div>
+              <p id="linkFeedback" role="status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div class="screen-reader-only" aria-live="polite" id="announcer"></div>
+</body>
+</html>
